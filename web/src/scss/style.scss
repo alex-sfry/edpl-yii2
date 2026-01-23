@@ -1,0 +1,35 @@
+@use 'vars' as *;
+@import "../bootstrap/scss/functions";
+@import "../bootstrap/scss/variables";
+
+.breadcrumb {
+    margin-bottom: 0;
+}
+
+.bg-header {
+    background-color: $indigo-custom !important;
+}
+
+.bg-main {
+    background-color: $blue-custom !important;
+}
+
+.lsp-125 {
+    letter-spacing: .125rem !important;
+}
+
+.navbar-nav {
+    --bs-navbar-active-color: #{$light-orange};
+    --bs-nav-link-color: #{$light};
+    --bs-nav-link-hover-color: #{$light-orange};
+
+    .dropdown-menu {
+        --bs-dropdown-link-hover-bg: transparent;
+        --bs-dropdown-link-hover-color: #{$light-orange};
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        color: #{$light-orange};
+        background-color: transparent !important;
+    }
+}
