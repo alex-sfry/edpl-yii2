@@ -30,7 +30,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <body class="d-flex flex-column h-100 overflow-x-hidden">
     <?php $this->beginBody() ?>
-    <?php echo \Yii::$app->controller->route ?>
     <header id="header">
         <?php
         NavBar::begin([
@@ -45,10 +44,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'items' => [
                 ['label' => 'Home', 'url' => ['site/index']],
                 [
-                    'label' => 'Galaxy',
+                    'label' => 'search',
                     'items' => [
                         [
-                            'label' => 'Systems',
+                            'label' => 'systems',
                             'url' => ['system/index'],
                             'linkOptions' => [
                                 'class' => 'fw-semibold',
@@ -57,8 +56,16 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                             'active' => isActive('system/', false)
                         ],
                         [
-                            'label' => 'Stations',
+                            'label' => 'stations',
                             'url' => ['station/index'],
+                            'linkOptions' => [
+                                'class' => 'fw-semibold',
+                                'aria-current' => isActive('station/', false) ? 'page' : null
+                            ]
+                        ],
+                        [
+                            'label' => 'materials',
+                            'url' => ['raw-material/index'],
                             'linkOptions' => [
                                 'class' => 'fw-semibold',
                                 'aria-current' => isActive('station/', false) ? 'page' : null
@@ -67,18 +74,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     ],
                     'dropdownOptions' => ['data-bs-theme' => 'dark', 'class' => 'bg-header border-light'],
                 ],
-                [
-                    'label' => 'Engineering',
-                    'items' => [
-                        [
-                            'label' => 'raw materials',
-                            'url' => ['raw-material/index'],
-                            'linkOptions' => ['class' => 'fw-semibold']
-                        ],
-                    ],
-                    'dropdownOptions' => ['data-bs-theme' => 'dark', 'class' => 'bg-header border-light']
-                ],
-                ['label' => 'Supply/Demand', 'url' => ['msd/index']],
+                ['label' => 'engineers', 'url' => ['#']]
             ]
         ]);
         NavBar::end();
