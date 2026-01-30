@@ -10,6 +10,11 @@ return [
         // '<controller:gear>/<action>/<slug:[\w\-]+>' => '<controller>/<action>',
         // '<controller>/<action>' => '<controller>/<action>',
 
+        'stations/<id:\d+>' => 'station/view',
+        'stations/update/<id:\d+>' => 'station/update',
+        'stations/create' => 'station/create',
+        'stations' => 'station/index',
+
         'systems/view/<id:\d+>' => 'system/view',
         'systems/delete/<id:\d+>' => 'system/delete',
         'systems/update/<id:\d+>' => 'system/update',
