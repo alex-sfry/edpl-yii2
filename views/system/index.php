@@ -26,17 +26,39 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'headerRowOptions' => ['class' => 'text-nowrap'],
         'rowOptions' => ['class' => 'text-nowrap'],
+        'options' => ['class' => 'table-responsive'],
         'pager' => [
             'class' => \yii\bootstrap5\LinkPager::class,
         ],
         'columns' => [
             'name',
-            'primary_economy',
-            'secondary_economy',
-            'government',
-            'allegiance',
-            'security',
+            [
+                'attribute' => 'primary_economy',
+                'filter' => economies(),
+                'filterInputOptions' => ['class' => 'form-select']
+            ],
+            [
+                'attribute' => 'secondary_economy',
+                'filter' => economies(),
+                'filterInputOptions' => ['class' => 'form-select']
+            ],
+            [
+                'attribute' => 'government',
+                'filter' => governments(),
+                'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']
+            ],
+            [
+                'attribute' => 'allegiance',
+                'filter' => allegiances(),
+                'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']
+            ],
+            [
+                'attribute' => 'security',
+                'filter' => sec_levels(),
+                'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']
+            ],
             'population:integer',
             'star_type',
             [
