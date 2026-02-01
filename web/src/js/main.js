@@ -1,7 +1,7 @@
 function datalist(inputId, datalistId, url) {
     let debounceTimer;
 
-    $(`#${inputId}`).on('keyup', function () {
+    $(`#${inputId}`).on('input', function () {
         const query = $(this).val();
 
         if (query.length < 3) return;
