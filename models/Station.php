@@ -73,7 +73,7 @@ class Station extends \yii\db\ActiveRecord
                 ['system_id'],
                 'exist',
                 'targetClass' => System::class,
-                'targetAttribute' => ['systemName' => 'name'],
+                'targetAttribute' => ['system_id' => 'id'],
                 'message' => "System doesn't exist."
             ],
             [
