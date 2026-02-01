@@ -65,7 +65,8 @@ class StationController extends Controller
 
         if ($request->isPost) {
             if ($model->load($request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                \Yii::$app->session->addFlash('success', "Successfully created '$model->name' station.");
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -82,18 +83,12 @@ class StationController extends Controller
     public function actionUpdate(Request $request, int $id): string|\yii\web\Response
     {
         $model = $this->findModel($id);
-        $model->systemName = $model->system->name;
-
-        $systems = System::find()
-            ->select('name')
-            ->where(['like', 'name', "{$model->systemName}" . '%', false])
-            ->column();
 
         if ($request->isPost && $model->load($request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', ['model' => $model, 'systems' => $systems]);
+        return $this->render('update', ['model' => $model]);
     }
 
     /**
