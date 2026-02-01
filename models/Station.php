@@ -67,7 +67,7 @@ class Station extends \yii\db\ActiveRecord
                 'message' => 'This combination of System - Station has already been taken.'
             ],
             [['dta', 'system_id'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'systemName'], 'string', 'max' => 255],
             [['type', 'economy', 'government', 'allegiance'], 'string', 'max' => 50],
             [
                 ['system_id'],
