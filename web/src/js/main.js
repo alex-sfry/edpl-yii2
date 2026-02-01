@@ -1,26 +1,24 @@
-function datalist(inputId, datalistId, url) {
-    let debounceTimer;
-
-    $(`#${inputId}`).on('input', function () {
-        const query = $(this).val();
-
-        if (query.length < 3) return;
-
-        clearTimeout(debounceTimer);
-
-        debounceTimer = setTimeout(() => {
-            $.ajax({
-                url: url,
-                method: 'GET',
-                data: { q: query },
-                success(response) {
-                    const $datalist = $(`#${datalistId}`);
-                    $datalist.empty();
-                    response.forEach(item => $datalist.append(`<option value="${item.name}">`));
-                    console.log(response);
-                }
-            });
-        }, 500); // debounce delay (ms)
+function comboBox(id, url) {
+    const uri = url
+    new TomSelect('#' + id, {
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        shouldLoad: function (query) {
+            if (query.length < 3) return false;
+            return true;
+        },
+        load: function (query, callback) {
+            this.clearOptions();
+            const url = uri + encodeURIComponent(query);
+            fetch(url)
+                .then(response => response.json())
+                .then(json => {
+                    callback(json);
+                }).catch(() => {
+                    callback();
+                });
+        },
     });
 }
 
@@ -29,7 +27,7 @@ function datalist(inputId, datalistId, url) {
 //         const qty = $('.material-cnt').length;
 //         console.log(qty)
 //         $('.material-cnt').last().clone().appendTo("#materials-controls-cnt");
-
+        
 
 //         const $label = $('.mat-label').last();
 //         const $select = $('.mat-control').last();
@@ -46,5 +44,7 @@ function datalist(inputId, datalistId, url) {
 //     })
 // }
 
-if (document.getElementById('systemName')) datalist('station-systemname', 'systemName', '/systems/search');
-// if (document.getElementById('planet-material-form')) createMaterialInputs();
+if (document.getElementById('station-system_id')) comboBox('station-system_id', '/systems/search?q=');
+// if (document.getElementById('planet-system_id')) comboBox('planet-system_id', '/systems/search?q=');
+// if (document.getElementById('select-planet_id')) comboBox('select-planet_id', '/planets/search?q=');
+if (document.getElementById('planet-material-form')) createMaterialInputs();

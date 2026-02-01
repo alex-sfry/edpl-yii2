@@ -62,7 +62,6 @@ class StationController extends Controller
     public function actionCreate(Request $request): string|\yii\web\Response
     {
         $model = new Station();
-        $systems = [];
 
         if ($request->isPost) {
             if ($model->load($request->post()) && $model->save()) {
@@ -72,7 +71,7 @@ class StationController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', ['model' => $model, 'systems' => $systems]);
+        return $this->render('create', ['model' => $model]);
     }
 
     /**

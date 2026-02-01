@@ -1,14 +1,21 @@
 <?php
 
+use app\assets\TomSelectAsset;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
-use yii\web\JqueryAsset;
 
 /** @var yii\web\View $this */
 /** @var app\models\Station $model */
 /** @var yii\widgets\ActiveForm $form */
-/** @var app\models\System[]|array $systems */
-JqueryAsset::register($this);
+TomSelectAsset::register($this);
+$this->registerCss('
+    .icon{
+        width: 3rem;
+    }
+    .item{
+        width: 100%;
+    }
+');
 ?>
 
 <div class="station-form">
@@ -17,27 +24,17 @@ JqueryAsset::register($this);
         <?php $form = ActiveForm::begin(['enableClientValidation' => false, 'enableClientScript' => false]); ?>
         <div class="row">
             <div class="col-md-6">
-                <?= $form->field($model, 'systemName')->begin() ?>
-
-                <?= Html::activeLabel($model, 'systemName', ['label' => 'System Name', 'class' => 'form-label']) ?>
-                <?= Html::activeTextInput($model, 'systemName', [
-                    'class' => $model->getFirstError('systemName') ? 'form-control is-invalid' : 'form-control',
-                    'list' => 'systemName'
+                <?php $options = isset($model->system) ? [$model->system_id => $model->system->name] : [] ?>
+                <?= $form->field($model, 'system_id')->label('System')->dropDownList($options, [
+                    'placeholder' => 'partial system name',
+                    'required' => true,
+                    'minLength' => 3
                 ]) ?>
-                <div class="invalid-feedback"><?= $model->getFirstError('systemName') ?></div>
 
-                <datalist id="systemName" class="ac-datalist">
-                    <?php foreach ($systems as $item) : ?>
-                        <option value="<?= $item ?>"></option>
-                    <?php endforeach; ?>
-                </datalist>
-
-                <?php echo $form->field($model, 'systemName')->end() ?>
-
-                <?= $form
-                    ->field($model, 'name')
-                    ->label('Station Name')
-                    ->textInput() ?>
+                <?= $form->field($model, 'name')->label('Station Name')->textInput([
+                    'required' => true,
+                    'minLength' => 3
+                ]) ?>
 
                 <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
 
@@ -47,13 +44,13 @@ JqueryAsset::register($this);
             <div class="col-md-6">
                 <?= $form->field($model, 'economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
 
-                <?= $form
-                    ->field($model, 'government')
-                    ->dropDownList(governments(), ['prompt' => 'select government']) ?>
+                <?= $form->field($model, 'government')->dropDownList(governments(), [
+                    'prompt' => 'select government'
+                ]) ?>
 
-                <?= $form
-                    ->field($model, 'allegiance')
-                    ->dropDownList(allegiances(), ['prompt' => 'select allegiance']) ?>
+                <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), [
+                    'prompt' => 'select allegiance'
+                ]) ?>
             </div>
         </div>
     </div>
@@ -61,6 +58,8 @@ JqueryAsset::register($this);
     <div class="mb-3">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
+
     <?php ActiveForm::end(); ?>
 
+</div>
 </div>

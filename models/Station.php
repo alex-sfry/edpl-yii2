@@ -21,8 +21,6 @@ use yii\behaviors\TimestampBehavior;
  */
 class Station extends \yii\db\ActiveRecord
 {
-    public $systemName;
-
     /**
      * @inheritdoc
      */
@@ -31,16 +29,6 @@ class Station extends \yii\db\ActiveRecord
         return [
             TimestampBehavior::class,
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeValidate()
-    {
-        parent::beforeValidate();
-        $this->system_id = System::find()->select('id')->where(['name' => $this->systemName])->scalar();
-        return true;
     }
 
     /**
@@ -59,15 +47,9 @@ class Station extends \yii\db\ActiveRecord
         return [
             [['type', 'dta', 'economy', 'government', 'allegiance'], 'default', 'value' => null],
             [['name'], 'required', 'message' => 'Station name cannot be blank.'],
-            [['system_id', 'systemName'], 'required', 'message' => 'System name is required'],
-            [
-                ['system_id', 'name'],
-                'unique',
-                'targetAttribute' => ['system_id', 'name'],
-                'message' => 'This combination of System - Station has already been taken.'
-            ],
+            [['system_id'], 'required', 'message' => 'System name is required'],
+            [['name'], 'string', 'max' => 255],
             [['dta', 'system_id'], 'integer'],
-            [['name', 'systemName'], 'string', 'max' => 255],
             [['type', 'economy', 'government', 'allegiance'], 'string', 'max' => 50],
             [
                 ['system_id'],
@@ -77,11 +59,10 @@ class Station extends \yii\db\ActiveRecord
                 'message' => "System doesn't exist."
             ],
             [
-                ['systemName'],
-                'exist',
-                'targetClass' => System::class,
-                'targetAttribute' => ['systemName' => 'name'],
-                'message' => "System doesn't exist."
+                ['system_id', 'name'],
+                'unique',
+                'targetAttribute' => ['system_id', 'name'],
+                'message' => 'This combination of System - Station has already been taken.'
             ],
         ];
     }
