@@ -22,8 +22,25 @@
 //     });
 // }
 
-function datalist(url) {
-    
+function datalist(id, url) {
+    let debounceTimer;
+
+    $(`#${id}`).on('keyup', function () {
+        const query = $(this).val();
+
+        clearTimeout(debounceTimer);
+
+        debounceTimer = setTimeout(() => {
+            $.ajax({
+                url: url,
+                method: 'GET',
+                data: { q: query },
+                success(response) {
+                    console.log(response);
+                }
+            });
+        }, 300); // debounce delay (ms)
+    });
 }
 
 // function createMaterialInputs() {
@@ -31,7 +48,7 @@ function datalist(url) {
 //         const qty = $('.material-cnt').length;
 //         console.log(qty)
 //         $('.material-cnt').last().clone().appendTo("#materials-controls-cnt");
-        
+
 
 //         const $label = $('.mat-label').last();
 //         const $select = $('.mat-control').last();
@@ -48,7 +65,5 @@ function datalist(url) {
 //     })
 // }
 
-// if (document.getElementById('station-system_id')) comboBox('station-system_id', '/systems/search?q=');
-// if (document.getElementById('planet-system_id')) comboBox('planet-system_id', '/systems/search?q=');
-// if (document.getElementById('select-planet_id')) comboBox('select-planet_id', '/planets/search?q=');
+if (document.getElementById('systemName')) datalist('station-system_id', '/systems/search');
 // if (document.getElementById('planet-material-form')) createMaterialInputs();
