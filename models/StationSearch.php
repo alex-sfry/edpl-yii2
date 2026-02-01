@@ -44,7 +44,7 @@ class StationSearch extends Station
      */
     public function search(array $params, string|null $formName = null): ActiveDataProvider
     {
-        $query = Station::find()->joinWith('system as system');
+        $query = Station::find()->alias('st')->joinWith('system as system');
 
         // add conditions that should always apply here
 
@@ -68,20 +68,20 @@ class StationSearch extends Station
         
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'type' => $this->type,
-            'economy' => $this->economy,
-            'government' => $this->government,
-            'allegiance' => $this->allegiance,
+            'st.id' => $this->id,
+            'st.type' => $this->type,
+            'st.economy' => $this->economy,
+            'st.government' => $this->government,
+            'st.allegiance' => $this->allegiance,
             // 'system_id' => $this->system_id
         ]);
 
         $query
-            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'st.name', $this->name])
             ->andFilterWhere(['like', 'system.name', $this->getAttribute('system.name')])
-            ->andFilterWhere(['<=', 'dta', $this->dta])
-            ->andFilterWhere(['<=', 'created_at', $this->created_at])
-            ->andFilterWhere(['<=', 'updated_at', $this->updated_at]);
+            ->andFilterWhere(['<=', 'st.dta', $this->dta])
+            ->andFilterWhere(['<=', 'st.created_at', $this->created_at])
+            ->andFilterWhere(['<=', 'st.updated_at', $this->updated_at]);
 
         return $dataProvider;
     }
