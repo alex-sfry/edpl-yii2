@@ -25,7 +25,7 @@ class StationSearch extends Station
     public function rules()
     {
         return [
-            [['id', 'dta', 'system_id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'dta', 'created_at', 'updated_at'], 'integer'],
             [['name', 'type', 'economy', 'government', 'allegiance', 'system.name'], 'safe'],
         ];
     }
@@ -52,6 +52,11 @@ class StationSearch extends Station
             'query' => $query,
         ]);
 
+        $dataProvider->sort->attributes['system.name'] = [
+            'asc' => ['system.name' => SORT_ASC],
+            'desc' => ['system.name' => SORT_DESC],
+        ];
+
         $this->load($params, $formName);
 
         if (!$this->validate()) {
@@ -60,6 +65,7 @@ class StationSearch extends Station
             return $dataProvider;
         }
 
+        
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

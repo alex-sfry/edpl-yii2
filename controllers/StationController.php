@@ -36,15 +36,12 @@ class StationController extends Controller
     /**
      * Lists all Station models.
      */
-    public function actionIndex(): string
+    public function actionIndex(Request $request): string
     {
         $searchModel = new StationSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = $searchModel->search($request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
     /**
@@ -89,17 +86,21 @@ class StationController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(int $id): string|\yii\web\Response
+    public function actionUpdate(Request $request, int $id): string|\yii\web\Response
     {
         $model = $this->findModel($id);
+        $model->systemName = $model->system->name;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        $systems = System::find()
+            ->select('name')
+            ->where(['like', 'name', "{$model->systemName}" . '%', false])
+            ->column();
+
+        if ($request->isPost && $model->load($request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', ['model' => $model, 'systems' => $systems]);
     }
 
     /**

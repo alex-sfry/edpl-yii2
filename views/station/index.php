@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Station', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,19 +30,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
-            'type',
+            ['attribute' => 'type', 'filter' => stationTypes(), 'filterInputOptions' => ['class' => 'form-select']],
             'dta',
-            'economy',
-            'government',
-            'allegiance',
+            ['attribute' => 'economy', 'filter' => economies(), 'filterInputOptions' => ['class' => 'form-select']],
+            [
+                'attribute' => 'government',
+                'filter' => governments(),
+                'filterInputOptions' => ['class' => 'form-select']
+            ],
+            [
+                'attribute' => 'allegiance',
+                'filter' => allegiances(),
+                'filterInputOptions' => ['class' => 'form-select']
+            ],
             'system.name',
-            //'created_at',
-            //'updated_at',
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Station $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

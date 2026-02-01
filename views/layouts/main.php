@@ -60,7 +60,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                             'url' => ['station/index'],
                             'linkOptions' => [
                                 'class' => 'fw-semibold',
-                                'aria-current' => isActive('station/', false) ? 'page' : null
+                                'aria-current' => isActive('station/', false) ? 'page' : null,
+                                'active' => isActive('station/', false) ? 'page' : null
                             ]
                         ],
                         [
