@@ -27,6 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'headerRowOptions' => ['class' => 'text-nowrap'],
+        'rowOptions' => ['class' => 'text-nowrap'],
+        'options' => ['class' => 'table-responsive'],
+        'pager' => [
+            'class' => \yii\bootstrap5\LinkPager::class,
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
@@ -43,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => allegiances(),
                 'filterInputOptions' => ['class' => 'form-select']
             ],
-            'system.name',
+            ['attribute' => 'system.name', 'label' => 'System'],
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Station $model, $key, $index, $column) {

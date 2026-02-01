@@ -76,7 +76,7 @@ class Station extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'type' => 'Type',
-            'dta' => 'Distance To Arrival',
+            'dta' => 'Distance To Arrival (ls)',
             'economy' => 'Economy',
             'government' => 'Government',
             'allegiance' => 'Allegiance',
