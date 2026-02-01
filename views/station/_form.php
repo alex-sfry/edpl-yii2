@@ -2,10 +2,13 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use yii\web\JqueryAsset;
 
 /** @var yii\web\View $this */
 /** @var app\models\Station $model */
 /** @var yii\widgets\ActiveForm $form */
+/** @var app\models\System[]|array $systems */
+JqueryAsset::register($this);
 ?>
 
 <div class="station-form">
@@ -14,20 +17,27 @@ use yii\bootstrap5\ActiveForm;
         <?php $form = ActiveForm::begin(['enableClientValidation' => false, 'enableClientScript' => false]); ?>
         <div class="row">
             <div class="col-md-6">
-                <?= $form->field($model, 'system_id')->begin() ?>
-                <?= Html::activeLabel($model, 'system_id', ['class' => 'form-label']) ?>
+                <?= $form->field($model, 'systemName')->begin() ?>
 
-                <?= Html::activeTextInput($model, 'system_id', ['label' => 'System Name', 'class' => 'form-control']) ?>
+                <?= Html::activeLabel($model, 'systemName', ['label' => 'System Name', 'class' => 'form-label']) ?>
+                <?= Html::activeTextInput($model, 'systemName', [
+                    'class' => $model->getFirstError('systemName') ? 'form-control is-invalid' : 'form-control',
+                    'list' => 'systemName'
+                ]) ?>
+                <div class="invalid-feedback"><?= $model->getFirstError('systemName') ?></div>
 
-                <datalist class="ac-datalist"></datalist>
+                <datalist id="systemName" class="ac-datalist">
+                    <?php foreach ($systems as $item) : ?>
+                        <option value="<?= $item ?>"></option>
+                    <?php endforeach; ?>
+                </datalist>
 
-                <div class="invalid-feedback"></div>
-                <?= $form->field($model, 'system_id')->end() ?>
+                <?php echo $form->field($model, 'systemName')->end() ?>
 
                 <?= $form
                     ->field($model, 'name')
                     ->label('Station Name')
-                    ->textInput(['required' => true, 'minLength' => 3]) ?>
+                    ->textInput() ?>
 
                 <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
 

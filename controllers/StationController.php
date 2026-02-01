@@ -4,9 +4,11 @@ namespace app\controllers;
 
 use app\models\Station;
 use app\models\StationSearch;
+use app\models\System;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Request;
 
 /**
  * StationController implements the CRUD actions for Station model.
@@ -60,19 +62,26 @@ class StationController extends Controller
      * Creates a new Station model.
      * If creation is successful, the browser will be redirected to the 'index' page.
      */
-    public function actionCreate(): string|\yii\web\Response
+    public function actionCreate(Request $request): string|\yii\web\Response
     {
         $model = new Station();
+        $systems = [];
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        if ($request->isPost) {
+            if ($model->load($request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
+            }
+            if (!empty($model->getErrors('systemName'))) {
+                $systems = System::find()
+                    ->select('name')
+                    ->where(['like', 'name', "{$request->post('Station')['systemName']}" . '%', false])
+                    ->column();
             }
         } else {
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', ['model' => $model, 'systems' => $systems]);
     }
 
     /**
