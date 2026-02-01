@@ -28,19 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'name',
             'type',
             'dta',
             'economy',
-            //'government',
-            //'allegiance',
-            //'system_id',
+            'government',
+            'allegiance',
+            'system.name',
             //'created_at',
             //'updated_at',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Station $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
