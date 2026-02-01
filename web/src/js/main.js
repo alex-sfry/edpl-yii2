@@ -1,32 +1,10 @@
-// function comboBox(id, url) {
-//     const uri = url
-//     new TomSelect('#' + id, {
-//         valueField: 'id',
-//         labelField: 'name',
-//         searchField: 'name',
-//         shouldLoad: function (query) {
-//             if (query.length < 3) return false;
-//             return true;
-//         },
-//         load: function (query, callback) {
-//             this.clearOptions();
-//             const url = uri + encodeURIComponent(query);
-//             fetch(url)
-//                 .then(response => response.json())
-//                 .then(json => {
-//                     callback(json);
-//                 }).catch(() => {
-//                     callback();
-//                 });
-//         },
-//     });
-// }
-
-function datalist(id, url) {
+function datalist(inputId, datalistId, url) {
     let debounceTimer;
 
-    $(`#${id}`).on('keyup', function () {
+    $(`#${inputId}`).on('keyup', function () {
         const query = $(this).val();
+
+        if (query.length < 3) return;
 
         clearTimeout(debounceTimer);
 
@@ -36,10 +14,13 @@ function datalist(id, url) {
                 method: 'GET',
                 data: { q: query },
                 success(response) {
+                    const $datalist = $(`#${datalistId}`);
+                    $datalist.empty();
+                    response.forEach(item => $datalist.append(`<option value="${item.name}">`));
                     console.log(response);
                 }
             });
-        }, 300); // debounce delay (ms)
+        }, 500); // debounce delay (ms)
     });
 }
 
@@ -65,5 +46,5 @@ function datalist(id, url) {
 //     })
 // }
 
-if (document.getElementById('systemName')) datalist('station-system_id', '/systems/search');
+if (document.getElementById('systemName')) datalist('station-systemname', 'systemName', '/systems/search');
 // if (document.getElementById('planet-material-form')) createMaterialInputs();

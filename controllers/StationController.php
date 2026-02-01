@@ -68,12 +68,6 @@ class StationController extends Controller
             if ($model->load($request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
-            if (!empty($model->getErrors('systemName'))) {
-                $systems = System::find()
-                    ->select('name')
-                    ->where(['like', 'name', "{$request->post('Station')['systemName']}" . '%', false])
-                    ->column();
-            }
         } else {
             $model->loadDefaultValues();
         }
