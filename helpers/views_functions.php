@@ -64,10 +64,10 @@ function allegiances(): array
 function stationTypes(): array
 {
     return [
-        'Ocellus' => 'Ocellus',
-        'Orbis' => 'Orbis',
-        'Coriolis' => 'Coriolis',
-        'Asteroid Base' => 'Asteroid Base',
+        'Ocellus Starport' => 'Ocellus Starport',
+        'Orbis Starport' => 'Orbis Starport',
+        'Coriolis Starport' => 'Coriolis Starport',
+        'Asteroid base' => 'Asteroid base',
         'Outpost' => 'Outpost',
         'Planetary Port' => 'Planetary Port',
         'Planetary Outpost' => 'Planetary Outpost',
