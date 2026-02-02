@@ -26,8 +26,8 @@ return [
     'user' => [
         'identityClass' => 'app\modules\user\models\User',
         // 'enableAutoLogin' => false,
-        // 'enableAutoLogin' => true,
-        // 'loginUrl' => ['/user/user/login']
+        'enableAutoLogin' => true,
+        'loginUrl' => ['/user/user/login']
         // 'loginUrl' => null,
         // 'enableSession' => false
     ],

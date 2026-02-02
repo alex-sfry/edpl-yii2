@@ -10,7 +10,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        // 'app\modules\user\ModuleBootstrap',
+        'app\modules\user\ModuleBootstrap',
         'app\components\AppBootstrap'
     ],
     'aliases' => [
@@ -20,9 +20,9 @@ $config = [
     'components' => $components,
     'params' => $params,
     'modules' => [
-        // 'user' => [
-        //     'class' => 'app\modules\user\Module',
-        // ],
+        'user' => [
+            'class' => 'app\modules\user\Module',
+        ],
     ],
 ];
 
