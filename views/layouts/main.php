@@ -83,17 +83,26 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'activateParents' => true,
             'options' => ['class' => 'navbar-nav lsp-125 text-uppercase fw-semibold ms-auto'],
             'items' => [
-                Yii::$app->user->isGuest ? ['label' => 'Signup', 'url' => ['/user/user/signup']] : '',
-                Yii::$app->user->isGuest
-                    ? ['label' => 'Login', 'url' => ['/user/user/login']]
-                    : '<li class="nav-item">'
+                // Yii::$app->user->isGuest ? ['label' => 'Signup', 'url' => ['/user/user/signup']] : '',
+                // Yii::$app->user->isGuest
+                //     ? ['label' => 'Login', 'url' => ['/user/user/login']]
+                //     : '<li class="nav-item">'
+                //     . Html::beginForm(['/user/user/logout'])
+                //     . Html::submitButton(
+                //         'Logout (' . Yii::$app->user->identity->username . ')',
+                //         ['class' => 'nav-link btn btn-link logout']
+                //     )
+                //     . Html::endForm()
+                //     . '</li>'
+                
+                !Yii::$app->user->isGuest ? '<li class="nav-item">'
                     . Html::beginForm(['/user/user/logout'])
                     . Html::submitButton(
                         'Logout (' . Yii::$app->user->identity->username . ')',
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()
-                    . '</li>'
+                    . '</li>' : '',
             ]
         ]);
         NavBar::end();
