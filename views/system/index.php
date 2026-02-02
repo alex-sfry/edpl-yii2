@@ -17,9 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create System', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="d-flex mb-3">
+        <?= Html::a('Create System', ['create'], ['class' => 'btn btn-success me-2']) ?>
+        <?= Html::a('Create System from EDSM', ['edsm/system/create'], ['class' => 'btn btn-secondary']) ?>
+    </div>
 
     <?php /* echo $this->render('_search', ['model' => $searchModel]); */ ?>
 
@@ -60,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']
             ],
             'population:integer',
-            'star_type',
             [
                 'class' => ActionColumn::class,
                 'contentOptions' => ['class' => 'text-nowrap'],

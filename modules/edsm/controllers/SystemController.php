@@ -3,7 +3,7 @@
 namespace app\modules\edsm\controllers;
 
 use app\components\YiiHttpClient;
-use app\edsm\models\SystemSave;
+use app\modules\edsm\models\SystemSave;
 use yii\base\DynamicModel;
 use yii\web\Controller;
 
@@ -24,9 +24,12 @@ class SystemController extends Controller
                 'showInformation' => 1,
             ]);
 
-            if ((new SystemSave())->loadAndSave($data)) {
+            $system_save = new SystemSave();
+            if ($system_save->loadAndSave($data)) {
                 \Yii::$app->session->addFlash('success', "Successfully created `{$data['name']}` system.");
                 return $this->redirect(['/system/index']);
+            } else {
+                return $this->render('create', ['model' => $model, 'system_save' => $system_save]);
             }
         }
 

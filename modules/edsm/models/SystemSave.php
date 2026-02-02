@@ -1,6 +1,6 @@
 <?php
 
-namespace app\edsm\models;
+namespace app\modules\edsm\models;
 
 use app\models\System;
 
