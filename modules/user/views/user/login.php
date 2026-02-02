@@ -6,9 +6,11 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use yii\web\YiiAsset;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
+YiiAsset::register($this);
 ?>
 <div class="site-login">
     <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
