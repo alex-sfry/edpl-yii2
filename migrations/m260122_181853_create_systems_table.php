@@ -21,7 +21,6 @@ class m260122_181853_create_systems_table extends Migration
             'allegiance' => $this->string(50)->append('COLLATE NOCASE'),
             'security' => $this->string(50)->append('COLLATE NOCASE'),
             'population' => $this->integer(),
-            'star_type' => $this->string(50)->append('COLLATE NOCASE'),
             'created_at' =>  $this->integer()->notNull(),
             'updated_at' =>  $this->integer()->notNull(),
         ]);

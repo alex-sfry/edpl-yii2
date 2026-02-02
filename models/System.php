@@ -16,7 +16,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $allegiance
  * @property string|null $security
  * @property int|null $population
- * @property string|null $star_type
  * @property int $created_at
  * @property int $updated_at
  */
@@ -47,23 +46,12 @@ class System extends \yii\db\ActiveRecord
     {
         return [
             [
-                [
-                    'primary_economy',
-                    'secondary_economy',
-                    'allegiance',
-                    'government',
-                    'security',
-                    'population',
-                    'star_type'
-                ],
+                ['primary_economy', 'secondary_economy', 'allegiance', 'government', 'security', 'population'],
                 'default',
                 'value' => null
             ],
             [['name'], 'required'],
-            [
-                ['name', 'primary_economy', 'secondary_economy', 'government', 'allegiance', 'security', 'star_type'],
-                'string'
-            ],
+            [['name', 'primary_economy', 'secondary_economy', 'government', 'allegiance', 'security'], 'string'],
             [['population'], 'integer'],
             ['primary_economy', 'in', 'range' => array_keys(economies())],
             ['secondary_economy', 'in', 'range' => array_keys(economies())],
@@ -87,7 +75,6 @@ class System extends \yii\db\ActiveRecord
             'allegiance' => 'Allegiance',
             'security' => 'Security',
             'population' => 'Population',
-            'star_type' => 'Star Type',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

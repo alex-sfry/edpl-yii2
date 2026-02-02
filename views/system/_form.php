@@ -32,8 +32,6 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'population')->input('number') ?>
 
-    <?= $form->field($model, 'star_type')->textInput() ?>
-
     <div class="mb-3">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
