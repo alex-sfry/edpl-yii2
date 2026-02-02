@@ -75,7 +75,25 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     ],
                     'dropdownOptions' => ['data-bs-theme' => 'dark', 'class' => 'bg-header border-light'],
                 ],
-                ['label' => 'engineers', 'url' => ['#']]
+                ['label' => 'engineers', 'url' => ['#']],
+
+            ]
+        ]);
+        echo Nav::widget([
+            'activateParents' => true,
+            'options' => ['class' => 'navbar-nav lsp-125 text-uppercase fw-semibold ms-auto'],
+            'items' => [
+                Yii::$app->user->isGuest ? ['label' => 'Signup', 'url' => ['/user/user/signup']] : '',
+                Yii::$app->user->isGuest
+                    ? ['label' => 'Login', 'url' => ['/user/user/login']]
+                    : '<li class="nav-item">'
+                    . Html::beginForm(['/user/user/logout'])
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'nav-link btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
             ]
         ]);
         NavBar::end();
