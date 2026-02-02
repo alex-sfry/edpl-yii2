@@ -48,7 +48,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     'items' => [
                         [
                             'label' => 'systems',
-                            'url' => ['system/index'],
+                            'url' => ['/system/index'],
                             'linkOptions' => [
                                 'class' => 'fw-semibold',
                                 'aria-current' => isActive('system/', false) ? 'page' : null,
@@ -57,7 +57,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         ],
                         [
                             'label' => 'stations',
-                            'url' => ['station/index'],
+                            'url' => ['/station/index'],
                             'linkOptions' => [
                                 'class' => 'fw-semibold',
                                 'aria-current' => isActive('station/', false) ? 'page' : null,
@@ -66,7 +66,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         ],
                         [
                             'label' => 'materials',
-                            'url' => ['raw-material/index'],
+                            'url' => ['/raw-material/index'],
                             'linkOptions' => [
                                 'class' => 'fw-semibold',
                                 'aria-current' => isActive('station/', false) ? 'page' : null
@@ -82,8 +82,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         ?>
     </header>
 
-    <main id="main" class="flex-shrink-1 flex-grow-1 bg-main">
-        <div class="container bg-light pt-1 pb-2">
+    <main id="main" class="flex-shrink-1 flex-grow-1 bg-main h-auto">
+        <div class="container bg-light pt-1 pb-2 h-100">
             <?php if (!empty($this->params['breadcrumbs'])) : ?>
                 <?= Breadcrumbs::widget([
                     'links' => $this->params['breadcrumbs']
