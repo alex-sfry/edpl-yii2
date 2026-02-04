@@ -55,6 +55,7 @@ class SystemSearch extends System
 
         // grid filtering conditions
         $query->andFilterWhere([
+            'id' => $this->id,
             'primary_economy' => $this->primary_economy,
             'secondary_economy' => $this->secondary_economy,
             'government' => $this->government,

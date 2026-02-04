@@ -18,6 +18,7 @@ return [
         'systems/delete/<id:\d+>' => 'system/delete',
         'systems/update/<id:\d+>' => 'system/update',
         'systems/create' => 'system/create',
+        'systems/select' => 'system/select',
         'systems/search' => 'system/search',
         'systems' => 'system/index',
 

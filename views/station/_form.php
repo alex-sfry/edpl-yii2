@@ -3,37 +3,41 @@
 use app\assets\TomSelectAsset;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var app\models\Station $model */
 /** @var yii\widgets\ActiveForm $form */
-TomSelectAsset::register($this);
-$this->registerCss('
-    .icon{
-        width: 3rem;
-    }
-    .item{
-        width: 100%;
-    }
-');
+/** @var string $system_name */
 ?>
 
 <div class="station-form">
     <div class="col-md-10 col-lg-8 col-xl-6">
-
         <?php $form = ActiveForm::begin(['enableClientValidation' => false, 'enableClientScript' => false]); ?>
         <div class="row">
             <div class="col-md-6">
-                <?php $options = isset($model->system) ? [$model->system_id => $model->system->name] : [] ?>
-                <?= $form->field($model, 'system_id')->label('System')->dropDownList($options, [
-                    'placeholder' => 'partial system name',
-                    'required' => true,
-                    'minLength' => 3
-                ]) ?>
+                <?= $form->beginField($model, 'system_id') ?>
+                <div class="d-flex justify-content-between">
+                    <?= Html::activeLabel($model, 'system_id', ['class' => 'form-label me-2']) ?>
+                    <output><em>Selected: <strong><?= $system_name ?></strong></em></output>
+                </div>
+                <div class="d-flex align-items-start">
+                    <div class="flex-grow-1 me-1">
+                        <?= Html::activeInput('number', $model, 'system_id', ['class' => 'form-control']) ?>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <?= Html::a(
+                        'select system',
+                        ['/systems/select', 'return' => Url::to(['stations/create'])],
+                        ['class' => 'btn btn-secondary text-nowrap']
+                    ) ?>
+                </div>
+
+                <?= $form->endField() ?>
 
                 <?= $form->field($model, 'name')->label('Station Name')->textInput([
-                    'required' => true,
-                    'minLength' => 3
+                    // 'required' => true,
+                    // 'minLength' => 3
                 ]) ?>
 
                 <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
