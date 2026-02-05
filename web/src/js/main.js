@@ -4,6 +4,7 @@ function comboBox(id, url) {
         valueField: 'id',
         labelField: 'name',
         searchField: 'name',
+        maxItems: 1,
         shouldLoad: function (query) {
             if (query.length < 3) return false;
             return true;
@@ -20,6 +21,7 @@ function comboBox(id, url) {
                 });
         },
     });
+    document.getElementById(id).setCustomValidity('This field is required.');
 }
 
 // function createMaterialInputs() {
@@ -27,7 +29,7 @@ function comboBox(id, url) {
 //         const qty = $('.material-cnt').length;
 //         console.log(qty)
 //         $('.material-cnt').last().clone().appendTo("#materials-controls-cnt");
-        
+
 
 //         const $label = $('.mat-label').last();
 //         const $select = $('.mat-control').last();

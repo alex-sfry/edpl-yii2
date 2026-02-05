@@ -129,26 +129,6 @@ class SystemController extends Controller
     }
 
     /**
-     * Select system (for forms with  fields related to Systems table).
-     * @param Request $request
-     * @return string|\yii\web\Response
-     */
-    public function actionSelect(Request $request)
-    {
-        $searchModel = new SystemSearch();
-        $dataProvider = $searchModel->search($request->queryParams);
-
-        // where to return after select
-        $return_url = $request->get('return');
-
-        return $this->render('select', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'return_url' => $return_url,
-        ]);
-    }
-
-    /**
      * Finds the System model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
