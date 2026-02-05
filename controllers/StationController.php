@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\models\Station;
 use app\models\StationSearch;
-use app\models\System;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -29,7 +29,20 @@ class StationController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
-            ]
+            ],
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'actions' => ['create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ]
+            ],
         );
     }
 

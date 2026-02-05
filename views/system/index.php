@@ -17,10 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="d-flex mb-3">
-        <?= Html::a('Create System', ['create'], ['class' => 'btn btn-success me-2']) ?>
-        <?= Html::a('Create System from EDSM', ['edsm/system/create'], ['class' => 'btn btn-secondary']) ?>
-    </div>
+    <?php if (!\Yii::$app->user->isGuest) : ?>
+        <div class="d-flex mb-3">
+            <?= Html::a('Create System', ['create'], ['class' => 'btn btn-success me-2']) ?>
+            <?= Html::a('Create System from EDSM', ['edsm/system/create'], ['class' => 'btn btn-secondary']) ?>
+        </div>
+    <?php endif; ?>
+
 
     <?php /* echo $this->render('_search', ['model' => $searchModel]); */ ?>
 
@@ -67,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['class' => 'text-nowrap'],
                 'urlCreator' => function ($action, System $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

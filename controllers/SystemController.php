@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\System;
 use app\models\SystemSearch;
 use InvalidArgumentException;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -30,7 +31,20 @@ class SystemController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
-            ]
+            ],
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['create', 'update', 'delete', 'search'],
+                    'rules' => [
+                        [
+                            'actions' => ['create', 'update', 'delete', 'search'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ]
+            ],
         );
     }
 
