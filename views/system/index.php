@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'class' => \yii\bootstrap5\LinkPager::class,
         ],
         'columns' => [
+            'id',
             'name',
             [
                 'attribute' => 'primary_economy',

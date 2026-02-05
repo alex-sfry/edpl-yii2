@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'class' => \yii\bootstrap5\LinkPager::class,
         ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            'id',
             'name',
             ['attribute' => 'type', 'filter' => stationTypes(), 'filterInputOptions' => ['class' => 'form-select']],
             'dta',
