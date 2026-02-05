@@ -42,11 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'dta',
             ['attribute' => 'economy', 'filter' => economies(), 'filterInputOptions' => ['class' => 'form-select']],
             [
-                'attribute' => 'government',
-                'filter' => governments(),
-                'filterInputOptions' => ['class' => 'form-select']
-            ],
-            [
                 'attribute' => 'allegiance',
                 'filter' => allegiances(),
                 'filterInputOptions' => ['class' => 'form-select']

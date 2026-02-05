@@ -50,11 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-select']
             ],
             [
-                'attribute' => 'government',
-                'filter' => governments(),
-                'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']
-            ],
-            [
                 'attribute' => 'allegiance',
                 'filter' => allegiances(),
                 'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']
