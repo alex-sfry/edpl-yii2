@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'name',
                     'primary_economy',
                     'secondary_economy',
-                    'government',
                     'allegiance',
                     'security',
                     'population:integer',

@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'dta',
             'economy',
-            'government',
             'allegiance',
             'system_id',
             'created_at',
