@@ -1,6 +1,5 @@
 <?php
 
-use app\assets\TomSelectAsset;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
