@@ -26,19 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'type',
-            'dta',
-            'economy',
-            'allegiance',
-            'system_id',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
-
+    <div class="row">
+        <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+            <?= DetailView::widget([
+                'model' => $model,
+                'template' => '<tr><th style="white-space:nowrap">{label}</th><td style="width:100%">{value}</td></tr>',
+                'attributes' => [
+                    'id',
+                    'name',
+                    'type',
+                    'dta',
+                    'economy',
+                    'allegiance',
+                    'system_id',
+                    'created_at',
+                    'updated_at',
+                ],
+            ]) ?>
+        </div>
+    </div>
 </div>
