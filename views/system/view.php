@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'allegiance',
                     'security',
                     'population:integer',
-                    'star_type',
                     'created_at',
                     'updated_at'
                 ],
