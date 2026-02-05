@@ -51,6 +51,9 @@ class Station extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['dta', 'system_id'], 'integer'],
             [['type', 'economy', 'allegiance'], 'string', 'max' => 50],
+            ['economy', 'in', 'range' => array_keys(economies())],
+            ['allegiance', 'in', 'range' => array_keys(allegiances())],
+            ['type', 'in', 'range' => array_keys(stationTypes())],
             [
                 ['system_id'],
                 'exist',
