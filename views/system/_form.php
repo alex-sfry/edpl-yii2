@@ -24,8 +24,6 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'secondary_economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
 
-    <?= $form->field($model, 'government')->dropDownList(governments(), ['prompt' => 'select government']) ?>
-
     <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), ['prompt' => 'select allegiance']) ?>
 
     <?= $form->field($model, 'security')->dropDownList(sec_levels(), ['prompt' => 'select security']) ?>

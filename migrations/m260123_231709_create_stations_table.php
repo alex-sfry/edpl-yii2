@@ -18,7 +18,6 @@ class m260123_231709_create_stations_table extends Migration
             'type' => $this->string(50)->append('COLLATE NOCASE'),
             'dta' => $this->integer(),
             'economy' => $this->string(50)->append('COLLATE NOCASE'),
-            'government' => $this->string(50)->append('COLLATE NOCASE'),
             'allegiance' => $this->string(50)->append('COLLATE NOCASE'),
             'system_id' => $this->integer()->notNull(),
             'created_at' =>  $this->integer()->notNull(),

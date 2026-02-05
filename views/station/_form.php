@@ -32,17 +32,13 @@ $this->registerCss('
 
                 <?= $form->field($model, 'name')->label('Station Name')->textInput() ?>
 
-                <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
-
                 <?= $form->field($model, 'dta')->input('number') ?>
             </div>
 
             <div class="col-md-6">
-                <?= $form->field($model, 'economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
+                <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
 
-                <?= $form->field($model, 'government')->dropDownList(governments(), [
-                    'prompt' => 'select government'
-                ]) ?>
+                <?= $form->field($model, 'economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
 
                 <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), [
                     'prompt' => 'select allegiance'

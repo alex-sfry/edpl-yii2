@@ -18,7 +18,7 @@ class SystemSearch extends System
     {
         return [
             [['id', 'population'], 'integer'],
-            [['name', 'primary_economy', 'secondary_economy', 'government', 'allegiance', 'security'], 'string'],
+            [['name', 'primary_economy', 'secondary_economy', 'allegiance', 'security'], 'string'],
             [['created_at, updated_at'], 'safe']
         ];
     }
@@ -58,9 +58,8 @@ class SystemSearch extends System
             'id' => $this->id,
             'primary_economy' => $this->primary_economy,
             'secondary_economy' => $this->secondary_economy,
-            'government' => $this->government,
             'allegiance' => $this->allegiance,
-            'security' => $this->security,
+            'security' => $this->security,  
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])->andFilterWhere(['>=', 'population', $this->population]);

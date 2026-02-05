@@ -17,7 +17,6 @@ class m260122_181853_create_systems_table extends Migration
             'name' => $this->string(255)->notNull()->append('COLLATE NOCASE'),
             'primary_economy' => $this->string(50)->append('COLLATE NOCASE'),
             'secondary_economy' => $this->string(50)->append('COLLATE NOCASE'),
-            'government' => $this->string(50)->append('COLLATE NOCASE'),
             'allegiance' => $this->string(50)->append('COLLATE NOCASE'),
             'security' => $this->string(50)->append('COLLATE NOCASE'),
             'population' => $this->integer(),

@@ -26,7 +26,7 @@ class StationSearch extends Station
     {
         return [
             [['id', 'dta', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'type', 'economy', 'government', 'allegiance', 'system.name'], 'safe'],
+            [['name', 'type', 'economy', 'allegiance', 'system.name'], 'safe'],
         ];
     }
 
@@ -71,7 +71,6 @@ class StationSearch extends Station
             'st.id' => $this->id,
             'st.type' => $this->type,
             'st.economy' => $this->economy,
-            'st.government' => $this->government,
             'st.allegiance' => $this->allegiance,
             // 'system_id' => $this->system_id
         ]);

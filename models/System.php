@@ -12,7 +12,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string $name
  * @property string|null $primary_economy
  * @property string|null $secondary_economy
- * @property string|null $government
  * @property string|null $allegiance
  * @property string|null $security
  * @property int|null $population
@@ -46,16 +45,15 @@ class System extends \yii\db\ActiveRecord
     {
         return [
             [
-                ['primary_economy', 'secondary_economy', 'allegiance', 'government', 'security', 'population'],
+                ['primary_economy', 'secondary_economy', 'allegiance', 'security', 'population'],
                 'default',
                 'value' => null
             ],
             [['name'], 'required'],
-            [['name', 'primary_economy', 'secondary_economy', 'government', 'allegiance', 'security'], 'string'],
+            [['name', 'primary_economy', 'secondary_economy', 'allegiance', 'security'], 'string'],
             [['population'], 'integer'],
             ['primary_economy', 'in', 'range' => array_keys(economies())],
             ['secondary_economy', 'in', 'range' => array_keys(economies())],
-            ['government', 'in', 'range' => array_keys(governments())],
             ['allegiance', 'in', 'range' => array_keys(allegiances())],
             ['security', 'in', 'range' => array_keys(sec_levels())],
         ];
@@ -71,7 +69,6 @@ class System extends \yii\db\ActiveRecord
             'name' => 'Name',
             'primary_economy' => 'Primary Economy',
             'secondary_economy' => 'Secondary Economy',
-            'government' => 'Government',
             'allegiance' => 'Allegiance',
             'security' => 'Security',
             'population' => 'Population',

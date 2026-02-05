@@ -45,12 +45,12 @@ class Station extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'dta', 'economy', 'government', 'allegiance'], 'default', 'value' => null],
+            [['type', 'dta', 'economy', 'allegiance'], 'default', 'value' => null],
             [['name'], 'required', 'message' => 'Station name cannot be blank.'],
             [['system_id'], 'required', 'message' => 'System name is required'],
             [['name'], 'string', 'max' => 255],
             [['dta', 'system_id'], 'integer'],
-            [['type', 'economy', 'government', 'allegiance'], 'string', 'max' => 50],
+            [['type', 'economy', 'allegiance'], 'string', 'max' => 50],
             [
                 ['system_id'],
                 'exist',
@@ -78,7 +78,6 @@ class Station extends \yii\db\ActiveRecord
             'type' => 'Type',
             'dta' => 'Distance To Arrival (ls)',
             'economy' => 'Economy',
-            'government' => 'Government',
             'allegiance' => 'Allegiance',
             'system_id' => 'System ID',
             'created_at' => 'Created At',
