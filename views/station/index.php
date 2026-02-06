@@ -18,9 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (!\Yii::$app->user->isGuest) : ?>
-    <div class="mb-3">
-        <?= Html::a('Create Station', ['create'], ['class' => 'btn btn-success']) ?>
-    </div>
+        <div class="mb-3">
+            <?= Html::a('Create Station', ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
     <?php endif; ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 

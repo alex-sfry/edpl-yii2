@@ -7,7 +7,6 @@ use app\assets\TomSelectAsset;
 /** @var yii\web\View $this */
 /** @var app\models\Station $model */
 /** @var yii\widgets\ActiveForm $form */
-/** @var string $system_name */
 TomSelectAsset::register($this);
 $this->registerCss('
     .icon{

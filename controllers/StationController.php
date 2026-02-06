@@ -75,12 +75,6 @@ class StationController extends Controller
     public function actionCreate(Request $request): string|\yii\web\Response
     {
         $model = new Station();
-        $system_name = '';
-
-        if ($request->get('systemId') && $request->get('systemName')) {
-            $model->system_id = $request->get('systemId');
-            $system_name = $request->get('systemName');
-        }
 
         if ($request->isPost) {
             if ($model->load($request->post()) && $model->save()) {
@@ -91,7 +85,7 @@ class StationController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', ['model' => $model, 'system_name' => $system_name]);
+        return $this->render('create', ['model' => $model]);
     }
 
     /**
