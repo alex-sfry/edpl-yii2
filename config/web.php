@@ -12,6 +12,7 @@ $config = [
         'log',
         'app\modules\user\ModuleBootstrap',
         'app\modules\edsm\ModuleBootstrap',
+        'app\modules\noar\ModuleBootstrap',
         'app\components\AppBootstrap'
     ],
     'aliases' => [
@@ -26,6 +27,9 @@ $config = [
         ],
         'edsm' => [
             'class' => 'app\modules\edsm\Module',
+        ],
+        'noar' => [
+            'class' => 'app\modules\noar\Module',
         ],
     ],
 ];
