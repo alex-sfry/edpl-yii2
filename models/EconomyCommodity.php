@@ -9,7 +9,8 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "economy_commodity".
  *
  * @property int $id
- * @property int $commodity_id
+ * @property string $commodity
+ * @property string $category
  * @property string $economy
  * @property string $trade_type
  * @property int $created_at
@@ -41,13 +42,13 @@ class EconomyCommodity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['commodity_id', 'economy', 'trade_type'], 'required'],
-            [['commodity_id'], 'integer'],
-            [['economy', 'trade_type'], 'string', 'max' => 50],
+            [['commodity', 'category', 'economy', 'trade_type'], 'required'],
+            [['commodity'], 'string', 'max' => 255],
+            [['category', 'category', 'economy', 'trade_type'], 'string', 'max' => 50],
             [
-                ['commodity_id', 'economy', 'trade_type'],
+                ['commodity', 'category', 'economy', 'trade_type'],
                 'unique',
-                'targetAttribute' => ['commodity_id', 'economy', 'trade_type']
+                'targetAttribute' => ['commodity', 'category', 'economy', 'trade_type']
             ],
         ];
     }
@@ -59,19 +60,12 @@ class EconomyCommodity extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'commodity_id' => 'Commodity ID',
+            'commodity' => 'Commodity',
+            'category' => 'Category',
             'economy' => 'Economy',
             'trade_type' => 'Trade Type',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-    }
-
-    /**
-     * Gets query for [[Commodity]].
-     */
-    public function getCommodity(): \yii\db\ActiveQuery
-    {
-        return $this->hasOne(Commodity::class, ['id' => 'commodity_id']);
     }
 }
