@@ -7,6 +7,7 @@ use app\assets\TomSelectAsset;
 /** @var yii\web\View $this */
 /** @var app\models\Station $model */
 /** @var yii\widgets\ActiveForm $form */
+
 TomSelectAsset::register($this);
 $this->registerCss('
     .icon{
@@ -18,33 +19,31 @@ $this->registerCss('
 ');
 ?>
 
-<div class="station-form">
-    <div class="col-md-10 col-lg-8 col-xl-6">
-        <?php $form = ActiveForm::begin(['enableClientValidation' => false, 'enableClientScript' => false]); ?>
-        <div class="row">
-            <div class="col-md-6">
-                <?php $options = isset($model->system) ? [$model->system_id => $model->system->name] : [] ?>
-                <?= $form->field($model, 'system_id')->label('System')->dropDownList($options, [
-                    'placeholder' => 'partial system name',
-                    'required' => true,
-                ]) ?>
+<div class="station-form d-inline-block">
+    <?php $form = ActiveForm::begin([
+        'enableClientValidation' => false,
+        'enableClientScript' => false,
+        'fieldConfig' => [
+            'labelOptions' => ['class' => 'col-form-label text-nowrap me-2'],
+            'options' => ['class' => 'mb-3 d-flex']
+        ]
+    ]); ?>
 
-                <?= $form->field($model, 'name')->label('Station Name')->textInput() ?>
+    <?php $options = isset($model->system) ? [$model->system_id => $model->system->name] : [] ?>
+    <?= $form->field($model, 'system_id')->label('System')->dropDownList($options, [
+        'placeholder' => 'partial system name',
+        'required' => true,
+    ]) ?>
 
-                <?= $form->field($model, 'dta')->input('number') ?>
-            </div>
+    <?= $form->field($model, 'name')->label('Station Name')->textInput() ?>
 
-            <div class="col-md-6">
-                <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
+    <?= $form->field($model, 'dta')->input('number') ?>
 
-                <?= $form->field($model, 'economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
+    <?= $form->field($model, 'type')->dropDownList(stationTypes(), ['prompt' => 'select type']) ?>
 
-                <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), [
-                    'prompt' => 'select allegiance'
-                ]) ?>
-            </div>
-        </div>
-    </div>
+    <?= $form->field($model, 'economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
+
+    <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), ['prompt' => 'select allegiance']) ?>
 
     <div class="mb-3">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -52,5 +51,4 @@ $this->registerCss('
 
     <?php ActiveForm::end(); ?>
 
-</div>
 </div>
