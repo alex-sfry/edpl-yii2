@@ -18,6 +18,10 @@ class SystemForm extends \yii\base\Model
             ['name', 'string', 'min' => 3, 'max' => 255],
             [['primaryEconomy', 'secondaryEconomy', 'allegiance', 'security'], 'string'],
             ['population', 'integer'],
+            ['primaryEconomy', 'in', 'range' => array_keys(economies())],
+            ['secondaryEconomy', 'in', 'range' => array_keys(economies())],
+            ['allegiance', 'in', 'range' => array_keys(allegiances())],
+            ['security', 'in', 'range' => array_keys(sec_levels())],
         ];
     }
 
