@@ -1,19 +1,14 @@
 <?php
 
 return [
-    'create' => [
+    'manageAll' => [
         'type' => 2,
-        'description' => 'Create',
-    ],
-    'update' => [
-        'type' => 2,
-        'description' => 'Update',
+        'description' => 'Manage all',
     ],
     'admin' => [
         'type' => 1,
         'children' => [
-            'update',
-            'create',
+            'manageAll',
         ],
     ],
 ];
