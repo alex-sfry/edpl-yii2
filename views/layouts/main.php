@@ -36,13 +36,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             'brandOptions' => ['class' => 'fs-4 fw-semibold text-warning'],
-            'options' => ['class' => 'navbar-expand-lg bg-header']
+            'options' => ['class' => 'navbar-expand bg-header flex-nowrap overflow-x-auto']
         ]);
         echo Nav::widget([
             'activateParents' => true,
-            'options' => ['class' => 'navbar-nav lsp-125 text-uppercase fw-semibold'],
+            'options' => ['class' => 'navbar-nav lsp-125 text-uppercase flex-nowrap fw-semibold'],
             'items' => [
-                ['label' => 'Home', 'url' => ['site/index']],
                 [
                     'label' => 'search',
                     'items' => [
@@ -81,7 +80,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         ]);
         echo Nav::widget([
             'activateParents' => true,
-            'options' => ['class' => 'navbar-nav lsp-125 text-uppercase fw-semibold ms-auto'],
+            'options' => ['class' => 'navbar-nav lsp-125 text-uppercase fw-semibold ms-auto flex-nowrap'],
             'items' => [
                 // Yii::$app->user->isGuest ? ['label' => 'Signup', 'url' => ['/user/user/signup']] : '',
                 // Yii::$app->user->isGuest
@@ -99,7 +98,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     . Html::beginForm(['/user/user/logout'])
                     . Html::submitButton(
                         'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
+                        ['class' => 'nav-link btn btn-link logout text-nowrap']
                     )
                     . Html::endForm()
                     . '</li>' : '',
