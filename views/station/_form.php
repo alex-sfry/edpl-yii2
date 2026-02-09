@@ -1,5 +1,6 @@
 <?php
 
+use app\widgets\alext\SelectRelated;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use app\assets\TomSelectAsset;
@@ -36,21 +37,7 @@ use yii\helpers\Url;
         'required' => true,
     ]) */ ?>
 
-    <?= $form->beginField($model, 'system_id', ['options' => ['class' => 'mb-3']]) ?>
-    <div class="d-flex">
-        <?= Html::activeLabel($model, 'system_id', ['class' => 'col-form-label text-nowrap me-2']) ?>
-        <?= Html::activeInput('number', $model, 'system_id', ['class' => 'form-control', 'readonly' => true]) ?>
-        <a class="btn btn-secondary ms-1 text-nowrap"
-           href="<?= Url::to(['/system/select', 'return' => Url::to(['/station/create'])]) ?>">
-            select system
-        </a>
-    </div>
-    <?php if ($model->hasErrors('system_id')) : ?>
-        <div class="mt-1 text-danger">
-            <small><?= e($model->getFirstError('system_id')) ?></small>
-        </div>
-    <?php endif; ?>
-    <?= $form->endField() ?>
+    <?= SelectRelated::widget(['form' => $form, 'model' => $model, 'attribute' => 'system_id', ]) ?>
 
     <?= $form->field($model, 'name')->label('Station Name') ?>
 
