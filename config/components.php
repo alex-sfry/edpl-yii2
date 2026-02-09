@@ -51,5 +51,8 @@ return [
         ],
     ],
     'db' => DB_CONFIG,
-    'urlManager' => $urlManager
+    'urlManager' => $urlManager,
+    'authManager' => [
+        'class' => 'yii\rbac\PhpManager',
+    ],
 ];
