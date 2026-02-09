@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Request;
+use yii\web\Response;
 
 /**
  * StationController implements the CRUD actions for Station model.
@@ -53,7 +54,6 @@ class StationController extends Controller
     {
         $searchModel = new StationSearch();
         $dataProvider = $searchModel->search($request->queryParams);
-
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
@@ -63,18 +63,20 @@ class StationController extends Controller
      */
     public function actionView(int $id): string
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render('view', ['model' => $this->findModel($id)]);
     }
 
     /**
      * Creates a new Station model.
      * If creation is successful, the browser will be redirected to the 'index' page.
      */
-    public function actionCreate(Request $request): string|\yii\web\Response
+    public function actionCreate(Request $request): string|Response
     {
         $model = new Station();
+
+        if ($systemId = $request->get('systemId')) {
+            $model->system_id = $systemId;
+        }
 
         if ($request->isPost) {
             if ($model->load($request->post()) && $model->save()) {
@@ -93,7 +95,7 @@ class StationController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(Request $request, int $id): string|\yii\web\Response
+    public function actionUpdate(Request $request, int $id): string|Response
     {
         $model = $this->findModel($id);
         $system_name = $model->system->name;
@@ -107,20 +109,17 @@ class StationController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', ['model' => $model,'system_name' => $system_name]);
+        return $this->render('update', ['model' => $model, 'system_name' => $system_name]);
     }
 
     /**
      * Deletes an existing Station model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete(int $id)
+    public function actionDelete(int $id): Response
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

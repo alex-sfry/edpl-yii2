@@ -50,24 +50,19 @@ class SystemController extends Controller
 
     /**
      * Lists all System models.
-     *
-     * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new SystemSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
     /**
      * Displays a single System model.
-     * @param int $id ID
-     * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
@@ -75,9 +70,8 @@ class SystemController extends Controller
     /**
      * Creates a new System model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate(): string|Response
     {
         $model = new System();
 
@@ -96,11 +90,9 @@ class SystemController extends Controller
     /**
      * Updates an existing System model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id): string|Response
     {
         $model = $this->findModel($id);
 
@@ -114,23 +106,18 @@ class SystemController extends Controller
     /**
      * Deletes an existing System model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
     /**
-     * @param Request $request
-     * @param Response $response
-     * @return array
+     * Action for searching systems by partial name (for AutoComplete inputs like TomSelect)
      */
-    public function actionSearch(Request $request, Response $response)
+    public function actionSearch(Request $request, Response $response): array
     {
         $q = $request->get('q');
 
@@ -143,13 +130,27 @@ class SystemController extends Controller
     }
 
     /**
+     * Action to select a system for forms that need a system_id parameter
+     */
+    public function actionSelect(Request $request): string
+    {
+        $searchModel = new SystemSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $return_url = $request->get('return');
+
+        return $this->render('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'return_url' => $return_url,
+        ]);
+    }
+
+    /**
      * Finds the System model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return System the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): System
     {
         if (($model = System::findOne(['id' => $id])) !== null) {
             return $model;

@@ -3,20 +3,21 @@
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use app\assets\TomSelectAsset;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var app\models\Station $model */
-/** @var yii\widgets\ActiveForm $form */
+/** @var yii\bootstrap5\ActiveForm $form */
 
-TomSelectAsset::register($this);
-$this->registerCss('
-    .icon{
-        width: 3rem;
-    }
-    .item{
-        width: 100%;
-    }
-');
+// TomSelectAsset::register($this);
+// $this->registerCss('
+//     .icon{
+//         width: 3rem;
+//     }
+//     .item{
+//         width: 100%;
+//     }
+// ');
 ?>
 
 <div class="station-form d-inline-block">
@@ -29,13 +30,29 @@ $this->registerCss('
         ]
     ]); ?>
 
-    <?php $options = isset($model->system) ? [$model->system_id => $model->system->name] : [] ?>
-    <?= $form->field($model, 'system_id')->label('System')->dropDownList($options, [
+    <?php /* $options = isset($model->system) ? [$model->system_id => $model->system->name] : [] */ ?>
+    <?php /* echo $form->field($model, 'system_id')->label('System')->dropDownList($options, [
         'placeholder' => 'partial system name',
         'required' => true,
-    ]) ?>
+    ]) */ ?>
 
-    <?= $form->field($model, 'name')->label('Station Name')->textInput() ?>
+    <?= $form->beginField($model, 'system_id', ['options' => ['class' => 'mb-3']]) ?>
+    <div class="d-flex">
+        <?= Html::activeLabel($model, 'system_id', ['class' => 'col-form-label text-nowrap me-2']) ?>
+        <?= Html::activeInput('number', $model, 'system_id', ['class' => 'form-control', 'readonly' => true]) ?>
+        <a class="btn btn-secondary ms-1 text-nowrap"
+           href="<?= Url::to(['/system/select', 'return' => Url::to(['/station/create'])]) ?>">
+            select system
+        </a>
+    </div>
+    <?php if ($model->hasErrors('system_id')) : ?>
+        <div class="mt-1 text-danger">
+            <small><?= e($model->getFirstError('system_id')) ?></small>
+        </div>
+    <?php endif; ?>
+    <?= $form->endField() ?>
+
+    <?= $form->field($model, 'name')->label('Station Name') ?>
 
     <?= $form->field($model, 'dta')->input('number') ?>
 
@@ -50,5 +67,4 @@ $this->registerCss('
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>
