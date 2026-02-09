@@ -29,7 +29,7 @@ function du(mixed $var): void
 }
 
 
-function isActive(string $urlRoute, $exact = true): bool
+function isActive(string $urlRoute, $exact = false): bool
 {
     if ($exact) {
         return \Yii::$app->controller->route === $urlRoute ? true : false;
