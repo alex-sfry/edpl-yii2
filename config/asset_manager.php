@@ -20,7 +20,7 @@ return [
         ],
         'yii\bootstrap5\BootstrapPluginAsset' => [
             'sourcePath' => '@npm/bootstrap/dist',
-            'js' => ['js/bootstrap.bundle.min.js'],
+            'js' => [/* 'js/bootstrap.bundle.min.js' */],
             'jsOptions' => []
         ],
     ]
