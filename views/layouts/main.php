@@ -43,39 +43,27 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             'options' => ['class' => 'navbar-nav lsp-125 text-uppercase flex-nowrap fw-semibold'],
             'items' => [
                 [
-                    'label' => 'search',
-                    'items' => [
-                        [
-                            'label' => 'systems',
-                            'url' => ['/system/index'],
-                            'linkOptions' => [
-                                'class' => 'fw-semibold',
-                                'aria-current' => isActive('system/', false) ? 'page' : null,
-                            ],
-                            'active' => isActive('system/', false)
-                        ],
-                        [
-                            'label' => 'stations',
-                            'url' => ['/station/index'],
-                            'linkOptions' => [
-                                'class' => 'fw-semibold',
-                                'aria-current' => isActive('station/', false) ? 'page' : null,
-                                'active' => isActive('station/', false) ? 'page' : null
-                            ]
-                        ],
-                        [
-                            'label' => 'materials',
-                            'url' => ['/raw-material/index'],
-                            'linkOptions' => [
-                                'class' => 'fw-semibold',
-                                'aria-current' => isActive('station/', false) ? 'page' : null
-                            ]
-                        ],
-                    ],
-                    'dropdownOptions' => ['data-bs-theme' => 'dark', 'class' => 'bg-header border-light'],
+                    'label' => 'systems',
+                    'url' => ['/system/index'],
+                    'active' => isActive('system/'),
+                    'linkOptions' => ['class' => 'fw-semibold', 'aria-current' => isActive('system/') ? 'page' : null]
+                ],
+                [
+                    'label' => 'stations',
+                    'url' => ['/station/index'],
+                    'active' => isActive('station/'),
+                    'linkOptions' => ['class' => 'fw-semibold', 'aria-current' => isActive('station/') ? 'page' : null]
+                ],
+                [
+                    'label' => 'materials',
+                    'url' => ['/materials/index'],
+                    'active' => isActive('materials/'),
+                    'linkOptions' => [
+                        'class' => 'fw-semibold',
+                        'aria-current' => isActive('materials/') ? 'page' : null
+                    ]
                 ],
                 ['label' => 'engineers', 'url' => ['#']],
-
             ]
         ]);
         echo Nav::widget([
@@ -93,7 +81,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 //     )
                 //     . Html::endForm()
                 //     . '</li>'
-                
+
                 !Yii::$app->user->isGuest ? '<li class="nav-item">'
                     . Html::beginForm(['/user/user/logout'])
                     . Html::submitButton(
