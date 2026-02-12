@@ -45,11 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-select']
             ],
             [
-                'attribute' => 'secondary_economy',
-                'filter' => economies(),
-                'filterInputOptions' => ['class' => 'form-select']
-            ],
-            [
                 'attribute' => 'allegiance',
                 'filter' => allegiances(),
                 'filterInputOptions' => ['class' => 'form-select', 'style' => 'width: max-content;']

@@ -20,8 +20,6 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'primary_economy')->dropDownList(economies(), ['prompt' => 'Any']) ?>
 
-    <?= $form->field($model, 'secondary_economy')->dropDownList(economies(), ['prompt' => 'Any']) ?>
-
     <?= $form->field($model, 'government')->dropDownList(governments(), ['prompt' => 'Any']) ?>
 
     <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), ['prompt' => 'Any']) ?>

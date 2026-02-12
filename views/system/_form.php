@@ -7,7 +7,6 @@ use yii\bootstrap5\ActiveForm;
 /** @var app\models\System $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
-
 <div class="system-form d-inline-block">
     <?php $form = ActiveForm::begin([
         'enableClientValidation' => false,
@@ -21,8 +20,6 @@ use yii\bootstrap5\ActiveForm;
     <?= $form->field($model, 'name')->textInput(/* ['required' => true, 'minLength' => 3] */) ?>
 
     <?= $form->field($model, 'primary_economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
-
-    <?= $form->field($model, 'secondary_economy')->dropDownList(economies(), ['prompt' => 'select economy']) ?>
 
     <?= $form->field($model, 'allegiance')->dropDownList(allegiances(), ['prompt' => 'select allegiance']) ?>
 
