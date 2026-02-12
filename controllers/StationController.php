@@ -49,8 +49,10 @@ class StationController extends Controller
 
     /**
      * Lists all Station models.
+     * @param Request $request
+     * @return string
      */
-    public function actionIndex(Request $request): string
+    public function actionIndex(Request $request)
     {
         $searchModel = new StationSearch();
         $dataProvider = $searchModel->search($request->queryParams);
@@ -59,9 +61,11 @@ class StationController extends Controller
 
     /**
      * Displays a single Station model.
+     * @param int $id ID
+     * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView(int $id): string
+    public function actionView($id)
     {
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
@@ -69,8 +73,10 @@ class StationController extends Controller
     /**
      * Creates a new Station model.
      * If creation is successful, the browser will be redirected to the 'index' page.
+     * @param Request $request
+     * @return string|\yii\web\Response
      */
-    public function actionCreate(Request $request): string|Response
+    public function actionCreate(Request $request)
     {
         $model = new Station();
 
@@ -93,9 +99,12 @@ class StationController extends Controller
     /**
      * Updates an existing Station model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @param Request $request
+     * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(Request $request, int $id): string|Response
+    public function actionUpdate(Request $request, $id)
     {
         $model = $this->findModel($id);
         $system_name = $model->system->name;
@@ -115,20 +124,42 @@ class StationController extends Controller
     /**
      * Deletes an existing Station model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete(int $id): Response
+    public function actionDelete($id)
     {
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
 
     /**
+     * Action to select a system for forms that need a system_id parameter
+     * @param Request $request
+     * @return string
+     */
+    public function actionSelect(Request $request)
+    {
+        $searchModel = new StationSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $return_url = $request->get('return');
+
+        return $this->render('select', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'return_url' => $return_url,
+        ]);
+    }
+
+    /**
      * Finds the Station model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $id ID
+     * @return Station the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id): Station
+    protected function findModel($id)
     {
         if (($model = Station::findOne(['id' => $id])) !== null) {
             return $model;
