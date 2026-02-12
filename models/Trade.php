@@ -85,4 +85,28 @@ class Trade extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+
+    /**
+     * Gets query for [[Commodity]].
+     */
+    public function getCommodity(): \yii\db\ActiveQuery
+    {
+        return $this->hasOne(Commodity::class, ['id' => 'commodity_id']);
+    }
+    
+    /**
+     * Gets query for [[BuyStation]].
+     */
+    public function getBuyStation(): \yii\db\ActiveQuery
+    {
+        return $this->hasOne(Station::class, ['id' => 'buy_station_id']);
+    }
+    
+    /**
+     * Gets query for [[SellStation]].
+     */
+    public function getSellStation(): \yii\db\ActiveQuery
+    {
+        return $this->hasOne(Station::class, ['id' => 'sell_station_id']);
+    }
 }
