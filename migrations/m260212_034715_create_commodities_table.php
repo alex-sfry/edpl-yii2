@@ -15,6 +15,7 @@ class m260212_034715_create_commodities_table extends Migration
         $this->createTable('{{%commodities}}', [
             'id' => $this->primaryKey(),
             'category' => $this->string(50)->notNull()->append('COLLATE NOCASE'),
+            'category' => $this->string(50)->notNull()->append('COLLATE NOCASE'),
             'name' => $this->string(255)->notNull()->append('COLLATE NOCASE'),
         ]);
         $this->createIndex('commodities_name_idx', 'commodities', ['name'], true);
