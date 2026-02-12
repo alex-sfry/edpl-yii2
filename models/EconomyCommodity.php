@@ -3,31 +3,18 @@
 namespace app\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "economy_commodity".
  *
  * @property int $id
- * @property string $commodity
- * @property string $category
+ * @property int $commodity_id
+ * @property int $category_id
  * @property string $economy
  * @property string $trade_type
- * @property int $created_at
- * @property int $updated_at
  */
 class EconomyCommodity extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -42,13 +29,13 @@ class EconomyCommodity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['commodity', 'category', 'economy', 'trade_type'], 'required'],
-            [['commodity'], 'string', 'max' => 255],
-            [['category', 'category', 'economy', 'trade_type'], 'string', 'max' => 50],
+            [['commodity_id', 'category_id', 'economy', 'trade_type'], 'required'],
+            [['commodity_id', 'category_id'], 'integer'],
+            [['economy', 'trade_type'], 'string', 'max' => 50],
             [
-                ['commodity', 'category', 'economy', 'trade_type'],
+                ['commodity_id', 'economy', 'trade_type'],
                 'unique',
-                'targetAttribute' => ['commodity', 'category', 'economy', 'trade_type']
+                'targetAttribute' => ['commodity_id', 'economy', 'trade_type']
             ],
         ];
     }
@@ -60,12 +47,10 @@ class EconomyCommodity extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'commodity' => 'Commodity',
-            'category' => 'Category',
+            'commodity_id' => 'Commodity ID',
+            'category_id' => 'Category ID',
             'economy' => 'Economy',
             'trade_type' => 'Trade Type',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
         ];
     }
 }
