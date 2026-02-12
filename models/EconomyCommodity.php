@@ -36,6 +36,13 @@ class EconomyCommodity extends \yii\db\ActiveRecord
                 'unique',
                 'targetAttribute' => ['commodity_id', 'economy', 'trade_type']
             ],
+            [
+                ['commodity_id'],
+                'exist',
+                'targetClass' => Commodity::class,
+                'targetAttribute' => ['commodity_id' => 'id'],
+                'message' => "Commodity doesn't exist."
+            ],
         ];
     }
 
