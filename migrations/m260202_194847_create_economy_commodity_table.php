@@ -15,7 +15,6 @@ class m260202_194847_create_economy_commodity_table extends Migration
         $this->createTable('{{%economy_commodity}}', [
             'id' => $this->primaryKey(),
             'commodity_id' => $this->integer()->notNull(),
-            'category_id' => $this->integer()->notNull(),
             'economy' => $this->string(50)->notNull()->append('COLLATE NOCASE'),
             'trade_type' => $this->string(50)->notNull()->append('COLLATE NOCASE'),
         ]);

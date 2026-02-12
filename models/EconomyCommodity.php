@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $id
  * @property int $commodity_id
- * @property int $category_id
  * @property string $economy
  * @property string $trade_type
  */
@@ -29,8 +28,8 @@ class EconomyCommodity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['commodity_id', 'category_id', 'economy', 'trade_type'], 'required'],
-            [['commodity_id', 'category_id'], 'integer'],
+            [['commodity_id', 'economy', 'trade_type'], 'required'],
+            ['commodity_id', 'integer'],
             [['economy', 'trade_type'], 'string', 'max' => 50],
             [
                 ['commodity_id', 'economy', 'trade_type'],
@@ -48,9 +47,16 @@ class EconomyCommodity extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'commodity_id' => 'Commodity ID',
-            'category_id' => 'Category ID',
             'economy' => 'Economy',
             'trade_type' => 'Trade Type',
         ];
+    }
+
+    /**
+     * Gets query for [[Commodity]].
+     */
+    public function getCommodity(): \yii\db\ActiveQuery
+    {
+        return $this->hasOne(Commodity::class, ['id' => 'commodity_id']);
     }
 }
