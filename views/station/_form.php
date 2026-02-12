@@ -37,7 +37,13 @@ use yii\helpers\Url;
         'required' => true,
     ]) */ ?>
 
-    <?= SelectRelated::widget(['form' => $form, 'model' => $model, 'attribute' => 'system_id', ]) ?>
+    <?= SelectRelated::widget([
+        'form' => $form,
+        'model' => $model,
+        'attribute' => 'system_id',
+        'select' => 'system/select',
+        'return' => 'station/create',
+    ]) ?>
 
     <?= $form->field($model, 'name')->label('Station Name') ?>
 
